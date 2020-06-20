@@ -29,8 +29,8 @@ export class TradeCreateComponent implements OnInit {
     this.tradeService.createTrade(trade).subscribe(
       res => {
         this.resetForm(form)
-        this.toastr.success('Submitted successfully', 'User Created')
-        this.router.navigateByUrl('profile');
+        this.toastr.success('Submitted successfully', 'Trade created')
+        this.router.navigateByUrl('trades');
       },
       err => {
         console.log(err)

@@ -25,6 +25,8 @@ AcceptUserId: null,
 readonly rootURL = "http://localhost:50271/api";
 
 tradeList: Trade[];
+myTrades: Trade[];
+
 trade: Trade = {
   TradeId: null,
     Shift: null,
@@ -49,6 +51,16 @@ trade: Trade = {
     
   }
 
+  myTradeList(){
+    console.log('pepega');
+    var user: User = JSON.parse(localStorage.getItem('currentUser'));
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + user.Token});
+    this.http.get(this.rootURL+'/trade/my?Id='+user.UserId, { headers : tokenHeader})
+    .toPromise()
+    .then(res => this.myTrades = res as Trade[]);
+    
+  }
+
   acceptTrade(Id: number){
     var user: User = JSON.parse(localStorage.getItem('currentUser'));
     var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + user.Token});
@@ -70,6 +82,12 @@ trade: Trade = {
         );
       }
     });
+  }
+
+  deleteTrade(id: number){
+    var user: User = JSON.parse(localStorage.getItem('currentUser'));
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + user.Token});
+    return this.http.delete(this.rootURL+'/trade?id='+id, { headers : tokenHeader});
   }
 
   createTrade(newTrade: Trade){

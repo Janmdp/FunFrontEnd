@@ -10,6 +10,8 @@ import { UserUpdateComponent } from './users/user-update/user-update.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { TradeListComponent } from './trades/trade-list/trade-list.component';
 import { TradeComponent } from './pages/trade/trade.component';
+import { ShiftsComponent } from './shifts/shifts.component';
+import { MytradesComponent } from './trades/mytrades/mytrades.component';
 
 
 const routes: Routes = [
@@ -19,7 +21,9 @@ const routes: Routes = [
   { path: 'profile', component: UserProfileComponent, canActivate:[AuthGuard]},
   { path: 'update', component: UserUpdateComponent, canActivate:[AuthGuard]},
   { path: 'trades', component: TradeComponent, canActivate:[AuthGuard]},
-  { path: 'register', component: UserComponent, canActivate:[AuthGuard]}];
+  { path: 'register', component: UserComponent, canActivate:[AuthGuard]},
+  { path: 'shifts', component: ShiftsComponent, canActivate:[AuthGuard]},
+  { path: 'mytrades', component: MytradesComponent, canActivate:[AuthGuard]}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, CanDeactivate, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { User } from '../shared/users/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +52,12 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
     route: Route,
     segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
       if(localStorage.getItem('currentUser')!= null){
-        return true;
+        var user: User = JSON.parse(localStorage.getItem('currentUser'));
+        if(user.Active == 2){
+          return true;
+        }
+        this.router.navigateByUrl('');
+        return false;
       }
       else{
         this.router.navigateByUrl('');
