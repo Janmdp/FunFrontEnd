@@ -1,4 +1,4 @@
-<p>create new shift</p>
+<h1>Create Shift</h1>
 <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
     <div class="form-group">
         <div class="input-group">
@@ -15,15 +15,32 @@
         <button type="submit" class="btn btn-primary">Create new trade</button>
     </div>
 </form>
+<div class="row">
+    <div id="selectTable" class="col-xl-6">
+    <h1>Select</h1>
+        <table class="table table-hover">
+            <tr *ngFor="let us of allUsers" >
+                <td>{{us.UserId}}</td>
+                <td>{{us.Username}}</td>
+                <td>{{us.Email}}</td>
+                <td>
+                    <button class="btn btn-success" (click)="selectUser(us)">add</button>
+                </td>
+            </tr>
+        </table>
+    </div>
 
-<table class="table table-hover">
-    <tr *ngFor="let us of allUsers" >
-        <td>{{us.UserId}}</td>
-        <td>{{us.Username}}</td>
-        <td>{{us.Email}}</td>
-        <td>
-            <button (click)="selectUser(us)">add</button>
-        </td>
-    </tr>
-</table>
-
+    <div id="selectedTable" class="col-xl-6">
+        <h1>Selected</h1>
+        <table class="table table-hover">
+            <tr *ngFor="let us of selectedUsers" >
+                <td>{{us.UserId}}</td>
+                <td>{{us.Username}}</td>
+                <td>{{us.Email}}</td>
+                <td>
+                    <button class="btn btn-danger" (click)="deselectUser(us)">Remove</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

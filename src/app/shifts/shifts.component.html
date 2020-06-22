@@ -1,2 +1,7 @@
 <app-navbar></app-navbar>
-<app-create-shift></app-create-shift>
+<div class="container" >
+    <app-create-shift *ngIf="user.Active == 2"></app-create-shift>
+    <div class="unathorizerd" *ngIf="user.Active != 2">
+        <h1>You are not allowed on this page</h1>
+    </div>
+</div>
