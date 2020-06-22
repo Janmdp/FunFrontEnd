@@ -25,7 +25,8 @@ import { UserUpdateComponent } from './users/user-update/user-update.component';
 import { TradeListComponent } from './trades/trade-list/trade-list.component';
 import { TradeComponent} from './pages/trade/trade.component';
 import { TradeCreateComponent } from './trades/trade-create/trade-create.component';
-import { MytradesComponent } from './trades/mytrades/mytrades.component'
+import { MytradesComponent } from './trades/mytrades/mytrades.component';
+import { CreateShiftComponent } from './shifts/create-shift/create-shift.component'
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { MytradesComponent } from './trades/mytrades/mytrades.component'
     TradeListComponent,
     TradeCreateComponent,
     MytradesComponent,
+    CreateShiftComponent,
   ],
   imports: [
     BrowserModule,

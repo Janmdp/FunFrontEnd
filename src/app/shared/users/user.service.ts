@@ -47,8 +47,14 @@ confirmPassword: string;
 readonly rootURL = "http://localhost:50271/api";
 
 list :User[];
-
+allUsers: User[];
   constructor(private http:HttpClient) { }
+
+  public getAll(){
+    var user: User = JSON.parse(localStorage.getItem('currentUser'));
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + user.Token});
+    return this.http.get(this.rootURL+'/user/all', { headers : tokenHeader})
+  }
 
   public getUser(){
     console.log('happens')

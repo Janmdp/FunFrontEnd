@@ -16,6 +16,7 @@ export class ShiftService {
   readonly rootURL = "http://localhost:50271/api";
 
   shiftList: Shift[];
+  allShifts: Shift[];
   roster: Shift[];
   rosterFree: Shift[];
   constructor(private http:HttpClient) { }
@@ -44,7 +45,25 @@ export class ShiftService {
     })
   }
 
-  
+  addShift(shift: Shift, users: User[]){
+    var user: User = JSON.parse(localStorage.getItem('currentUser'));
+    var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + user.Token});
+    this.http.post(this.rootURL+'/shift', shift, { headers : tokenHeader} ).subscribe();
+    this.http.get(this.rootURL+'/shift/all', { headers : tokenHeader})
+  .toPromise()
+  .then(res => {
+    this.allShifts = res as Shift[];
+    console.log(this.allShifts);
+    users.forEach(us => {
+      var roster = {
+        shiftId: this.allShifts[this.allShifts.length - 1].ShiftId,
+        userId: us.UserId
+      }
+      console.log("User:" + us.UserId + ", Shift:" + this.allShifts[this.allShifts.length - 1].ShiftId);
+      this.http.post(this.rootURL+'/roster?userId='+ us.UserId + "&shiftId=" + this.allShifts[this.allShifts.length - 1].ShiftId, roster, { headers : tokenHeader} ).subscribe();
+    })
+  });
+  }
   refreshList(){
     var user: User = JSON.parse(localStorage.getItem('currentUser'));
     var tokenHeader = new HttpHeaders({'Authorization': 'Bearer ' + user.Token});
