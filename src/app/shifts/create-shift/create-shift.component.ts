@@ -36,6 +36,13 @@ export class CreateShiftComponent implements OnInit {
     this.allUsers.splice(this.allUsers.indexOf(us), 1);
     console.log("added");
   }
+
+  deselectUser(us: User){
+    this.allUsers= this.allUsers || [];
+    this.allUsers.push(Object.assign({}, us));
+    this.selectedUsers.splice(this.selectedUsers.indexOf(us), 1);
+    console.log("remove");
+  }
   
 
   onSubmit(form:NgForm)
