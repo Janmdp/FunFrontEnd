@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
     this.service.tryLogin(form.value).subscribe(
       (res: any) => {
         this.currentUser = res as User;
+        console.log(this.currentUser);
         localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
         this.resetForm(form);
         this.toastr.success('Login successfull', 'Login');
