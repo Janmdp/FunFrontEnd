@@ -5,11 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { User } from 'src/app/shared/users/user.model';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-
+  var profile:User;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
@@ -19,7 +21,7 @@ describe('HomeComponent', () => {
   }));
 
   beforeEach(() => {
-    var profile:User = {
+    profile = {
       UserId: 1,
       Username: 'Dixie Normus',
       Password: 'test123',
@@ -35,5 +37,10 @@ describe('HomeComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should show welcome message', () => {
+    expect(component).toBeTruthy();
+    expect(fixture.debugElement.query(By.css('h1')).nativeElement.innerText).toContain(profile.Username);
   });
 });

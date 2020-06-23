@@ -12,7 +12,7 @@
             <td>{{ ts.Shift.Start | date : 'mediumDate'}}</td>
             <td>{{ ts.ReworkShift.Start | date : 'mediumDate' }}</td>
             <td>
-                <button type="button" class="btn btn-secondary" (click)="deleteTrade(ts.TradeId)">Delete</button>
+                <button id="deleteTrade" type="button" class="btn btn-secondary" (click)="deleteTrade(ts.TradeId)">Delete</button>
             </td>
         </tr>
     </table>

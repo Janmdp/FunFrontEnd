@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { User } from 'src/app/shared/users/user.model';
+import { DebugElement } from '@angular/core';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -17,7 +18,7 @@ describe('NavbarComponent', () => {
     })
     .compileComponents();
   }));
-
+  
   beforeEach(() => {
     //fixture = TestBed.createComponent(NavbarComponent);
     //component = fixture.componentInstance;
